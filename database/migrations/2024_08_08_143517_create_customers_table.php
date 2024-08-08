@@ -16,14 +16,10 @@ return new class extends Migration
             $table->string('nama');
             $table->string('telepon')->nullable();
             $table->string('alamat')->nullable();
-            $table->unsignedBigInteger('sales_id');
-            $table->unsignedBigInteger('paket_layanan_id');
+            $table->foreignId('sales_id')->nullable()->constrained('sales')->cascadeOnDelete();
+            $table->foreignId('paket_layanan_id')->nullable()->constrained('paket_layanans')->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->timestamps();
-             // Relasi ke tabel sales
-             $table->foreign('sales_id')->references('id')->on('sales')->onDelete('cascade');
-
-             // Relasi ke tabel paket layanan
-             $table->foreign('paket_layanan_id')->references('id')->on('paket_layanans')->onDelete('cascade');
         });
     }
 
