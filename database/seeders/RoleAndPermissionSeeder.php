@@ -25,6 +25,7 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'user.management']);
         Permission::create(['name' => 'role.permission.management']);
         Permission::create(['name' => 'menu.management']);
+        Permission::create(['name' => 'kelola.data']);
         //user
         Permission::create(['name' => 'user.index']);
         Permission::create(['name' => 'user.create']);
@@ -71,23 +72,40 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'menu-item.create']);
         Permission::create(['name' => 'menu-item.edit']);
         Permission::create(['name' => 'menu-item.destroy']);
+        //sales
+        Permission::create(['name' => 'sales.index']);
+        Permission::create(['name' => 'sales.create']);
+        Permission::create(['name' => 'sales.edit']);
+        Permission::create(['name' => 'sales.destroy']);
+        //customer
+        Permission::create(['name' => 'customer.index']);
+        Permission::create(['name' => 'customer.create']);
+        Permission::create(['name' => 'customer.edit']);
+        Permission::create(['name' => 'customer.destroy']);
+        //paket-layanan
+        Permission::create(['name' => 'paket-layanan.index']);
+        Permission::create(['name' => 'paket-layanan.create']);
+        Permission::create(['name' => 'paket-layanan.edit']);
+        Permission::create(['name' => 'paket-layanan.destroy']);
 
-        // create roles 
-        $roleUser = Role::create(['name' => 'user']);
-        $roleUser->givePermissionTo([
-            'dashboard',
-            'user.management',
-            'user.index',
-        ]);
+      
 
-        // create Super Admin
-        $role = Role::create(['name' => 'super-admin']);
+        // create access
+        $role = Role::create(['name' => 'sales']);
         $role->givePermissionTo(Permission::all());
+
+          // create roles 
+          $roleUser = Role::create(['name' => 'customer']);
+          $roleUser->givePermissionTo([
+              'dashboard',
+              'user.management',
+              'user.index',
+          ]);
 
         //assign user id 1 ke super admin
         $user = User::find(1);
-        $user->assignRole('super-admin');
+        $user->assignRole('sales');
         $user = User::find(2);
-        $user->assignRole('user');
+        $user->assignRole('customer');
     }
 }
