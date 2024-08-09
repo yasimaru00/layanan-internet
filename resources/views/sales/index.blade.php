@@ -13,6 +13,7 @@
         </div>
         <div class="section-body">
             <h2 class="section-title">Paket Layanan</h2>
+
             <div class="row">
                 <div class="col-12">
                     @include('layouts.alert')

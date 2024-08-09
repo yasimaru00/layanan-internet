@@ -79,17 +79,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     });
 
     Route::group(['prefix' => 'kelola-data'], function () {
-        Route::resource('sales', SalesController::class);
-        Route::resource('paket-layanan', PaketLayananController::class);
-        Route::resource('customer', CustomerController::class);
-    });
-    Route::group(['prefix' => 'kelola-data'], function () {
-        Route::resource('customers', CustomerController::class);
+        Route::resource('sales',SalesController::class);
+        Route::resource('paket-layanan',PaketLayananController::class);
+        Route::resource('customer',CustomerController::class);
+        
     });
 });
 
-// Route::middleware(['auth', 'check.customer.ownership'])->group(function () {
-//     Route::group(['prefix' => 'kelola-data'], function () {
-//         Route::resource('customers', CustomerController::class);
-//     });
-// });
+
