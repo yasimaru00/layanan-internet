@@ -21,4 +21,9 @@ class Sales extends Model
         $this->belongsTo(User::class);
     }
 
+    public function customers()
+    {
+        return $this->hasMany(Customer::class);
+    }
+
 }

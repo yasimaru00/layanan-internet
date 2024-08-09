@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\SalesController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -32,5 +33,6 @@ Route::group(
         // Route::apiResource('categories', CategoryController::class);
         Route::post('/auth/logout', [AuthController::class, 'logout']);
         Route::apiResource('/category', CategoryController::class);
+        Route::apiResource('/sales', SalesController::class, ['as' => 'api']);
     }
 );
