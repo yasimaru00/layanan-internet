@@ -4,7 +4,7 @@
     <!-- Main Content -->
     <section class="section">
         <div class="section-header">
-            <h1>Daftar Paket Layanan</h1>
+            <h1>Daftar Sales</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                 <div class="breadcrumb-item"><a href="#">Components</a></div>
@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Paket Layanan</h2>
+            <h2 class="section-title">Sales</h2>
 
             <div class="row">
                 <div class="col-12">
@@ -25,8 +25,8 @@
                         <div class="card-header">
                             <h4>Daftar Data</h4>
                             <div class="card-header-action">
-                                <a class="btn btn-icon icon-left btn-primary" href="{{ route('paket-layanan.create') }}">Tambah Data
-                                    </a>
+                                {{-- <a class="btn btn-icon icon-left btn-primary" href="{{ route('paket-layanan.create') }}">Tambah Data
+                                    </a> --}}
                                 {{-- <a class="btn btn-info btn-primary active import">
                                     <i class="fa fa-download" aria-hidden="true"></i>
                                     Import Data</a>
@@ -56,8 +56,8 @@
                                 <form id="search" method="GET" action="{{ route('paket-layanan.index') }}">
                                     <div class="form-row">
                                         <div class="form-group col-md-4">
-                                            <label for="">Nama Paket</label>
-                                            <input type="text" name="nama_paket" class="form-control" id="nama_paket"
+                                            <label for="">Nama</label>
+                                            <input type="text" name="nama" class="form-control" id="nama"
                                                 placeholder="">
                                         </div>
                                     </div>
@@ -72,18 +72,16 @@
                                     <tbody>
                                         <tr>
                                             <th>#</th>
-                                            <th>Nama Paket</th>
-                                            <th>Keterangan</th>
-                                            <th>Harga</th>
-                                            <th class="text-right">Action</th>
+                                            <th>Nama Sales</th>
+                                            <th>Email</th>
+                                            {{-- <th class="text-right">Action</th> --}}
                                         </tr>
                                         @foreach ($data as $key => $dt)
                                             <tr>
                                                 <td>{{ ($data->currentPage() - 1) * $data->perPage() + $key + 1 }}</td>
-                                                <td>{{ $dt->nama_paket }}</td>
-                                                <td>{{ $dt->deskripsi }}</td>
-                                                <td>{{ $dt->harga }}</td>
-                                                <td class="text-right">
+                                                <td>{{ $dt->nama }}</td>
+                                                <td>{{ $dt->user->email }}</td>
+                                                {{-- <td class="text-right">
                                                     <div class="d-flex justify-content-end">
                                                         <a href="{{ route('paket-layanan.edit', $dt->id) }}"
                                                             class="btn btn-sm btn-info btn-icon "><i
@@ -98,7 +96,7 @@
                                                                 <i class="fas fa-times"></i> Delete </button>
                                                         </form>
                                                     </div>
-                                                </td>
+                                                </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>

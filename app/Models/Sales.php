@@ -10,15 +10,19 @@ class Sales extends Model
     use HasFactory;
 
     protected $table = 'sales';
-    protected $fillable = 
+    protected $fillable =
     [
         'nama',
-        'telepon',
+        // 'telepon',
         'user_id',
     ];
     public function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id');
     }
 
+    public function customer()
+    {
+        return $this->hasMany(Customer::class,'sales_id');
+    }
 }

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <section class="section">
         <div class="section-header">
             <h1>Table</h1>
@@ -18,9 +17,9 @@
                 <div class="card-header">
                     <h4>Validasi Tambah Data</h4>
                 </div>
-                <div class="card-body">
-                    <form action="{{ route('user.store') }}" method="post">
-                        @csrf
+                <form action="{{ route('user.store') }}" method="post">
+                    @csrf
+                    <div class="card-body">
                         <div class="form-group">
                             <label for="name">Your Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
@@ -51,11 +50,12 @@
                                 </div>
                             @enderror
                         </div>
-                </div>
-                <div class="card-footer text-right">
-                    <button class="btn btn-primary">Submit</button>
-                    <a class="btn btn-secondary" href="{{ route('user.index') }}">Cancel</a>
-                </div>
+                        {{-- <input type="hidden" id="nama" name="nama" value="{{old('name')}}"> --}}
+                        <div class="card-footer text-right">
+                            <button class="btn btn-primary">Submit</button>
+                            <a class="btn btn-secondary" href="{{ route('user.index') }}">Cancel</a>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

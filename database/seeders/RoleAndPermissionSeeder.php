@@ -88,24 +88,29 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'paket-layanan.edit']);
         Permission::create(['name' => 'paket-layanan.destroy']);
 
-      
+
 
         // create access
-        $role = Role::create(['name' => 'sales']);
+        $role = Role::create(['name' => 'admin']);
         $role->givePermissionTo(Permission::all());
 
-          // create roles 
-          $roleUser = Role::create(['name' => 'customer']);
-          $roleUser->givePermissionTo([
-              'dashboard',
-              'user.management',
-              'user.index',
-          ]);
+        // create roles 
+        $roleUser = Role::create(['name' => 'sales']);
+        $roleUser->givePermissionTo([
+            'dashboard',
+            'kelola.data',
+            'customer.index',
+            'customer.create',
+            'customer.edit',
+            'customer.destroy',
+        ]);
 
         //assign user id 1 ke super admin
         $user = User::find(1);
-        $user->assignRole('sales');
+        $user->assignRole('admin');
         $user = User::find(2);
-        $user->assignRole('customer');
+        $user->assignRole('sales');
+        $user = User::find(3);
+        $user->assignRole('sales');
     }
 }

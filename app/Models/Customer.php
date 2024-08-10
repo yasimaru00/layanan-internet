@@ -10,26 +10,24 @@ class Customer extends Model
     use HasFactory;
 
     protected $table = 'customers';
-    protected $fillable =
-    [
+    protected $fillable = [
         'nama',
         'telepon',
         'alamat',
         'sales_id',
         'paket_layanan_id',
-        'user_id',
     ];
+    
+
 
     public function sales()
     {
-        $this->belongsTo(Sales::class);
+        return $this->belongsTo(Sales::class,'sales_id');
     }
-    public function user()
-    {
-        $this->belongsTo(User::class);
-    }
+
+
     public function paket_layanan()
     {
-        $this->belongsTo(PaketLayanan::class);
+        return $this->belongsTo(PaketLayanan::class,'paket_layanan_id');
     }
 }

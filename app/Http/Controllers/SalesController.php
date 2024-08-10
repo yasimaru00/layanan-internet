@@ -2,63 +2,92 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sales;
 use Illuminate\Http\Request;
 
 class SalesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function __construct()
     {
-        //
+        $this->middleware('auth');
+        $this->middleware('permission:sales.index')->only('index');
+        $this->middleware('permission:sales.create')->only('create', 'store');
+        $this->middleware('permission:sales.edit')->only('edit', 'update');
+        $this->middleware('permission:sales.destroy')->only('destroy');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+
+    public function index(Request $request)
     {
-        //
+        $data = Sales::when($request->input('nama'), function ($query, $nama) {
+            return $query->where('nama', 'like', '%' . $nama . '%');
+        })
+        ->paginate(10);
+        return view('sales.index',compact('data'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+    // public function create()
+    // {
+    //     $paket_layanan = PaketLayanan::all();
+    //     return view('sales.create',compact('paket_layanan'));
+    // }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+    // public function store(Request $request)
+    // {
+    //     $validate = $request->validate([
+    //         'nama' => 'required',
+    //         'telepon' => 'required',
+    //         'alamat' => 'required',
+    //         'sales_id' => 'required',
+    //         'paket_layanan_id' => 'required',
+    //         'user_id' => 'required',
+    //     ]);
+    //     // dd($request);
+    //     $data = Customer::create($validate);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    //     return redirect()->route('sales.index')->with('success','Data Berhasil ditambahkan');
+    // }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+
+    // public function show(string $id)
+    // {
+    //     //
+    // }
+    // public function edit($id)
+    // {
+    //     $data = Customer::find($id);
+    //     return view('sales.edit',compact('data'));
+    // }
+
+
+    // public function update(Request $request, $id)
+    // {
+    //     $data = Customer::findOrFail($id);
+    //     $validate = $request->validate([
+    //         'nama' => 'required',
+    //         'telepon' => 'required',
+    //         'alamat' => 'required',
+    //         'sales_id' => 'required',
+    //         'paket_layanan_id' => 'required',
+    //         'user_id' => 'required',
+    //     ]);
+    //     $data->update($validate);
+
+    //     return redirect()->route('sales.index')->with('success','Data Berhasil diubah');
+
+    // }
+
+
+    // public function destroy($id)
+    // {
+    //     try {
+    //         $data = Customer::findOrFail($id);
+    //         $data->delete();
+    //         return redirect()->route('sales.index')->with('success','Data Berhasil dihapus');
+    //     } catch (\Exception $e) {
+    //         return redirect()->route('sales.index')->with('error','Data saling berhubungan');
+
+    //     }
+    // }
 }

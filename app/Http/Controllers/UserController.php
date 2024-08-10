@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\UsersImport;
 use App\Models\Category;
+use App\Models\Sales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -35,7 +36,7 @@ class UserController extends Controller
     {
         //index -> menampilkan tabel data
 
-        Category::create([
+        Category::create([  
             "name" => "Masuk User Page",
         ]);
 
@@ -68,13 +69,39 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //simpan data
-        User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
-        return redirect(route('user.index'))->with('success', 'Data Berhasil Ditambahkan');;
+        // //simpan data
+        // User::create([
+        //     'name' => $request['name'],
+        //     'email' => $request['email'],
+        //     'password' => Hash::make($request['password']),
+        // ]);
+        
+        // return redirect(route('user.index'))->with('success', 'Data Berhasil Ditambahkan');
+        DB::beginTransaction();
+
+        try {
+  
+            $user = User::create([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+            ]);
+    
+            Sales::create([
+                'nama' => $user->name, 
+                // 'telepon' => 'Default Sales Telepon',
+                'user_id' => $user->id,
+            ]);
+    
+            // Commit transaksi jika semuanya berhasil
+            DB::commit();
+    
+            return redirect(route('user.index'))->with('success', 'Data Berhasil Ditambahkan');
+        } catch (\Exception $e) {
+            // Rollback transaksi jika terjadi kesalahan
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
     }
 
     /**

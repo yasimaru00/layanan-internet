@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DemoController;
 use App\Http\Controllers\Menu\MenuGroupController;
 use App\Http\Controllers\Menu\MenuItemController;
@@ -36,9 +37,9 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
-    Route::get('/dashboard', function () {
-        return view('home', ['users' => User::get(),]);
-    });
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    // Route untuk Dashboard Sales
+    // Route::get('/sales/monthly-customer-count', [DashboardController::class, 'monthlyCustomerCount']);
     //user list
 
     Route::prefix('user-management')->group(function () {

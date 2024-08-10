@@ -82,7 +82,8 @@
                                                 <td>{{ ($data->currentPage() - 1) * $data->perPage() + $key + 1 }}</td>
                                                 <td>{{ $dt->nama_paket }}</td>
                                                 <td>{{ $dt->deskripsi }}</td>
-                                                <td>{{ $dt->harga }}</td>
+                                                <td>{{ number_format($dt->harga, 0, ',', '.') }}</td>
+
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
                                                         <a href="{{ route('paket-layanan.edit', $dt->id) }}"
