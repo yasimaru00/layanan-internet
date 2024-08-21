@@ -11,11 +11,11 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Tambah Customer</h2>
+            <h2 class="section-title">Add Customer</h2>
 
             <div class="card">
                 <div class="card-header">
-                    <h4>Validasi Tambah Data</h4>
+                    <h4>Add Data</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('customer.store') }}" method="post" enctype="multipart/form-data">
@@ -28,41 +28,41 @@
 
                         <!-- Form fields for customer details -->
                         <div class="form-group">
-                            <label for="nama">Nama Customer</label>
-                            <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama"
-                                name="nama" value="{{ old('nama') }}">
-                            @error('nama')
+                            <label for="nama">Customer Name</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                                name="name" value="{{ old('name') }}">
+                            @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="telepon">Telepon</label>
-                            <input type="text" class="form-control @error('telepon') is-invalid @enderror" id="telepon"
-                                name="telepon" value="{{ old('telepon') }}">
-                            @error('telepon')
+                            <label for="telepon">Telephone</label>
+                            <input type="number" class="form-control @error('telp') is-invalid @enderror" id="telp"
+                                name="telp" value="{{ old('telp') }}">
+                            @error('telp')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="alamat">Alamat</label>
-                            <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat"
-                                name="alamat" value="{{ old('alamat') }}">
-                            @error('alamat')
+                            <label for="alamat">Address</label>
+                            <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
+                                name="address" value="{{ old('address') }}">
+                            @error('address')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="paket_layanan_id">Paket Layanan</label>
-                            <select name="paket_layanan_id" id="paket_layanan_id" class="form-control select2">
-                                <option value="">Pilih Paket</option>
-                                @foreach ($paket_layanan as $pl)
+                            <label for="paket_layanan_id">Service Package</label>
+                            <select name="service_package_id" id="service_package_id" class="form-control select2">
+                                <option value="">Choose Option</option>
+                                @foreach ($servicePackage as $pl)
                                     <option value="{{ $pl->id }}"
-                                        {{ old('paket_layanan_id') == $pl->id ? 'selected' : '' }}>
-                                        {{ $pl->nama_paket }} - {{ $pl->harga }}
+                                        {{ old('service_package_id') == $pl->id ? 'selected' : '' }}>
+                                        {{ $pl->name }} - {{ $pl->harga }}
                                     </option>
                                 @endforeach
                             </select>
-                            @error('paket_layanan_id')
+                            @error('service_package_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

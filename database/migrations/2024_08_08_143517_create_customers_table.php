@@ -13,17 +13,15 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('telepon')->nullable();
-            $table->string('alamat')->nullable();
+            $table->string('name');
+            $table->string('telp')->nullable();
+            $table->string('address')->nullable();
             $table->unsignedBigInteger('sales_id');
-            $table->unsignedBigInteger('paket_layanan_id');
-            // $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('service_package_id');
             $table->timestamps();
 
             $table->foreign('sales_id')->references('id')->on('sales');
-            $table->foreign('paket_layanan_id')->references('id')->on('paket_layanans');
-            // $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('service_package_id')->references('id')->on('service_packages');
 
 
         });

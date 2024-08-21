@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('paket_layanans', function (Blueprint $table) {
+        Schema::create('service_packages', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_paket');
-            $table->text('deskripsi')->nullable();
-            $table->decimal('harga', 10, 2);
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->decimal('price', 10, 2);
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('paket_layanans');
+        Schema::dropIfExists('service_packages');
     }
 };

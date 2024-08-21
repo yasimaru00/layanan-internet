@@ -5,7 +5,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DemoController;
 use App\Http\Controllers\Menu\MenuGroupController;
 use App\Http\Controllers\Menu\MenuItemController;
-use App\Http\Controllers\PaketLayananController;
 use App\Http\Controllers\RoleAndPermission\AssignPermissionController;
 use App\Http\Controllers\RoleAndPermission\AssignUserToRoleController;
 use App\Http\Controllers\RoleAndPermission\ExportPermissionController;
@@ -15,6 +14,7 @@ use App\Http\Controllers\RoleAndPermission\ImportRoleController;
 use App\Http\Controllers\RoleAndPermission\PermissionController;
 use App\Http\Controllers\RoleAndPermission\RoleController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\ServicePackageController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\UserController;
@@ -79,10 +79,21 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::put('assign-user/{user}', [AssignUserToRoleController::class, 'update'])->name('assign.user.update');
     });
 
-    Route::group(['prefix' => 'kelola-data'], function () {
-        Route::resource('sales',SalesController::class);
-        Route::resource('paket-layanan',PaketLayananController::class);
-        Route::resource('customer',CustomerController::class);
+    Route::group(['prefix' => 'data-management'], function () {
+        //service package
+        Route::get('service-package',[ServicePackageController::class,'index'])->name('service_package.index');
+        Route::get('service-package/create',[ServicePackageController::class,'create'])->name('service_package.create');
+        Route::post('service-package',[ServicePackageController::class,'store'])->name('service_package.store');
+        Route::get('service-package/{service_package}/edit',[ServicePackageController::class,'edit'])->name('service_package.edit');
+        Route::put('service-package/{service_package}',[ServicePackageController::class,'update'])->name('service_package.update');
+        Route::delete('service-package/{service_package}',[ServicePackageController::class,'destroy'])->name('service_package.destroy');
+        //customer
+        Route::get('customer',[CustomerController::class,'index'])->name('customer.index');
+        Route::get('customer/create',[CustomerController::class,'create'])->name('customer.create');
+        Route::post('customer',[CustomerController::class,'store'])->name('customer.store');
+        Route::get('customer/{customer}/edit',[CustomerController::class,'edit'])->name('customer.edit');
+        Route::put('customer/{customer}',[CustomerController::class,'update'])->name('customer.update');
+        Route::delete('customer/{customer}',[CustomerController::class,'destroy'])->name('customer.destroy');
         
     });
 });

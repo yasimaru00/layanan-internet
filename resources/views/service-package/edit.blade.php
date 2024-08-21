@@ -10,42 +10,42 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Edit Paket Layanan </h2>
+            <h2 class="section-title">Edit Service Package </h2>
             <div class="card">
-                <form action="{{ route('paket-layanan.update',$data ) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('service_package.update',$dataServicePackages ) }}" method="POST" enctype="multipart/form-data">
                     <div class="card-header">
-                        <h4>Validasi Edit Data Paket Layanan </h4>
+                        <h4> Edit Data </h4>
                     </div>
                     <div class="card-body">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="name">Nama Paket</label>
-                            <input type="text" class="form-control @error('nama_paket') is-invalid @enderror"
-                                id="nama_paket" name="nama_paket" placeholder=""
-                                value="{{ old('nama_paket', isset($data) ? $data->nama_paket : '') }}">
-                            @error('nama_paket')
+                            <label for="name">Paket Name</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                id="name" name="name" placeholder=""
+                                value="{{ old('name', isset($dataServicePackages) ? $dataServicePackages->name : '') }}">
+                            @error('name')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="name">Keterangan</label>
-                            <input type="text" class="form-control @error('deskripsi') is-invalid @enderror"
-                                id="deskripsi" name="deskripsi" placeholder=""
-                                value="{{ old('deskripsi', isset($data) ? $data->deskripsi : '') }}">
-                            @error('deskripsi')
+                            <label for="name">Description</label>
+                            <input type="text" class="form-control @error('description') is-invalid @enderror"
+                                id="description" name="description" placeholder=""
+                                value="{{ old('description', isset($dataServicePackages) ? $dataServicePackages->description : '') }}">
+                            @error('description')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="name">Harga</label>
-                            <input type="number" class="form-control @error('harga') is-invalid @enderror" id="harga"
-                                name="harga" placeholder="" value="{{ old('harga', isset($data) ? $data->harga : '') }}" min="0">
-                            @error('harga')
+                            <label for="name">Price</label>
+                            <input type="number" class="form-control @error('price') is-invalid @enderror" id="price"
+                                name="price" placeholder="" value="{{ old('price', isset($dataServicePackages) ? $dataServicePackages->price : '') }}" min="0">
+                            @error('price')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -53,7 +53,7 @@
                         </div>
                     <div class="card-footer text-right">
                         <button class="btn btn-primary">Submit</button>
-                        <a class="btn btn-secondary" href="{{ route('paket-layanan.index') }}">Cancel</a>
+                        <a class="btn btn-secondary" href="{{ route('service_package.index') }}">Cancel</a>
                     </div>
                 </form>
             </div>

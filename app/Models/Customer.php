@@ -11,11 +11,11 @@ class Customer extends Model
 
     protected $table = 'customers';
     protected $fillable = [
-        'nama',
-        'telepon',
-        'alamat',
+        'name',
+        'telp',
+        'address',
         'sales_id',
-        'paket_layanan_id',
+        'service_package_id',
     ];
     
 
@@ -26,8 +26,8 @@ class Customer extends Model
     }
 
 
-    public function paket_layanan()
+    public function servicePackage()
     {
-        return $this->belongsTo(PaketLayanan::class,'paket_layanan_id');
+        return $this->belongsTo(ServicePackage::class,'service_package_id');
     }
 }

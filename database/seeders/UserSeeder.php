@@ -16,26 +16,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // User::create([
-        //     'name' => "Admin",
-        //     'email' => "admin@gmail.com",
-        //     'password' => Hash::make('password'),
-        //     'email_verified_at' => now(),
-        // ]);
-        // User::create([
-        //     'name' => "sales",
-        //     'email' => "sales@gmail.com",
-        //     'password' => Hash::make('password'),
-        //     'email_verified_at' => now(),
-        // ]);
-        // User::create([
-        //     'name' => "sales2",
-        //     'email' => "sales2@gmail.com",
-        //     'password' => Hash::make('password'),
-        //     'email_verified_at' => now(),
-        // ]);
-        // User::factory()->count(10)->create();
-        // Create admin user (without sales)
         $admin = User::create([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
@@ -58,9 +38,8 @@ class UserSeeder extends Seeder
             ]);
 
             Sales::create([
-                'nama' => $user->name,
+                'name' => $user->name,
                 'user_id' => $user->id,
-                // Optionally add default values for other fields
             ]);
         }
     }

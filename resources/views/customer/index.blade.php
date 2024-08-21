@@ -4,7 +4,7 @@
     <!-- Main Content -->
     <section class="section">
         <div class="section-header">
-            <h1>Daftar Customer</h1>
+            <h1>List Customer</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                 <div class="breadcrumb-item"><a href="#">Components</a></div>
@@ -23,9 +23,9 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h4>Daftar Data</h4>
+                            <h4>List Data</h4>
                             <div class="card-header-action">
-                                <a class="btn btn-icon icon-left btn-primary" href="{{ route('customer.create') }}">Tambah Data
+                                <a class="btn btn-icon icon-left btn-primary" href="{{ route('customer.create') }}">Add Data
                                     </a>
                                 {{-- <a class="btn btn-info btn-primary active import">
                                     <i class="fa fa-download" aria-hidden="true"></i>
@@ -43,9 +43,9 @@
                                 <form id="search" method="GET" action="{{ route('customer.index') }}">
                                     <div class="form-row">
                                         <div class="form-group col-md-4">
-                                            <label for="">Nama</label>
-                                            <input type="text" name="nama" class="form-control" id="nama"
-                                                placeholder="" value="{{ $nama }}">
+                                            <label for="">Customer Name</label>
+                                            <input type="text" name="name" class="form-control" id="name"
+                                                placeholder="" value="{{ $name }}">
                                         </div>
                                     </div>
                                     <div class="text-right">
@@ -59,26 +59,26 @@
                                     <tbody>
                                         <tr>
                                             <th>#</th>
-                                            <th>Nama Customer</th>
-                                            <th>Telepon</th>
+                                            <th>Customer Name</th>
+                                            <th>Telephone</th>
                                             <th>Sales</th>
-                                            <th>Paket Layanan</th>
+                                            <th>Service Package</th>
                                             <th class="text-right">Action</th>
                                         </tr>
-                                        @foreach ($data as $key => $dt)
+                                        @foreach ($dataCustomers as $key => $dt)
                                             <tr>
-                                                <td>{{ ($data->currentPage() - 1) * $data->perPage() + $key + 1 }}</td>
-                                                <td>{{ $dt->nama }}</td>
-                                                <td>{{ $dt->telepon }}</td>
-                                                <td>{{ $dt->sales->nama }}</td>
-                                                <td>{{ $dt->paket_layanan->nama_paket }}</td>
+                                                <td>{{ ($dataCustomers->currentPage() - 1) * $dataCustomers->perPage() + $key + 1 }}</td>
+                                                <td>{{ $dt->name }}</td>
+                                                <td>{{ $dt->telp }}</td>
+                                                <td>{{ $dt->sales->name }}</td>
+                                                <td>{{ $dt->servicePackage->name }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
-                                                        <a href="{{ route('customer.edit', $dt->id) }}"
+                                                        <a href="{{ route('customer.edit', Crypt::encrypt($dt->id)) }}"
                                                             class="btn btn-sm btn-info btn-icon "><i
                                                                 class="fas fa-edit"></i>
                                                             Edit</a>
-                                                        <form action="{{ route('customer.destroy', $dt->id) }}"
+                                                        <form action="{{ route('customer.destroy', Crypt::encrypt($dt->id)) }}"
                                                             method="POST" class="ml-2">
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type="hidden" name="_token"
@@ -93,7 +93,7 @@
                                     </tbody>
                                 </table>
                                 <div class="d-flex justify-content-center">
-                                    {{ $data->withQueryString()->links() }}
+                                    {{ $dataCustomers->withQueryString()->links() }}
                                 </div>
                             </div>
                         </div>

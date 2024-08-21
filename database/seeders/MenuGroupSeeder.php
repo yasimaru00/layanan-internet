@@ -39,9 +39,9 @@ class MenuGroupSeeder extends Seeder
                     'permisison_name' => 'menu.management',
                 ],
                 [
-                    'name' => 'Kelola Data',
+                    'name' => 'Data Management',
                     'icon' => 'fas fa-folder',
-                    'permisison_name' => 'kelola.data',
+                    'permisison_name' => 'data.management',
                 ]
             ]
         );

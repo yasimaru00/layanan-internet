@@ -66,22 +66,22 @@ class MenuItemSeeder extends Seeder
                     'permission_name' => 'menu-item.index',
                     'menu_group_id' => 4,
                 ],
+                // [
+                //     'name' => 'Sales',
+                //     'route' => 'data-management/sales',
+                //     'permission_name' => 'sales.index',
+                //     'menu_group_id' => 5,
+                // ],
+                // [
+                //     'name' => 'Customer',
+                //     'route' => 'data-management/customer',
+                //     'permission_name' => 'customer.index',
+                //     'menu_group_id' => 5,
+                // ],
                 [
-                    'name' => 'Sales',
-                    'route' => 'kelola-data/sales',
-                    'permission_name' => 'sales.index',
-                    'menu_group_id' => 5,
-                ],
-                [
-                    'name' => 'Customer',
-                    'route' => 'kelola-data/customer',
-                    'permission_name' => 'customer.index',
-                    'menu_group_id' => 5,
-                ],
-                [
-                    'name' => 'Paket Layanan',
-                    'route' => 'kelola-data/paket-layanan',
-                    'permission_name' => 'paket-layanan.index',
+                    'name' => 'Service Package',
+                    'route' => 'data-management/service-package',
+                    'permission_name' => 'service-package.index',
                     'menu_group_id' => 5,
                 ],
             ]

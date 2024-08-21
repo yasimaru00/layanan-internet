@@ -25,7 +25,7 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'user.management']);
         Permission::create(['name' => 'role.permission.management']);
         Permission::create(['name' => 'menu.management']);
-        Permission::create(['name' => 'kelola.data']);
+        Permission::create(['name' => 'data.management']);
         //user
         Permission::create(['name' => 'user.index']);
         Permission::create(['name' => 'user.create']);
@@ -83,10 +83,10 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'customer.edit']);
         Permission::create(['name' => 'customer.destroy']);
         //paket-layanan
-        Permission::create(['name' => 'paket-layanan.index']);
-        Permission::create(['name' => 'paket-layanan.create']);
-        Permission::create(['name' => 'paket-layanan.edit']);
-        Permission::create(['name' => 'paket-layanan.destroy']);
+        Permission::create(['name' => 'service-package.index']);
+        Permission::create(['name' => 'service-package.create']);
+        Permission::create(['name' => 'service-package.edit']);
+        Permission::create(['name' => 'service-package.destroy']);
 
 
 
@@ -98,7 +98,7 @@ class RoleAndPermissionSeeder extends Seeder
         $roleUser = Role::create(['name' => 'sales']);
         $roleUser->givePermissionTo([
             'dashboard',
-            'kelola.data',
+            'data.management',
             'customer.index',
             'customer.create',
             'customer.edit',

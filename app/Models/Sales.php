@@ -12,8 +12,7 @@ class Sales extends Model
     protected $table = 'sales';
     protected $fillable =
     [
-        'nama',
-        // 'telepon',
+        'name',
         'user_id',
     ];
     public function user()
@@ -21,7 +20,7 @@ class Sales extends Model
         return $this->belongsTo(User::class,'user_id');
     }
 
-    public function customer()
+    public function customers()
     {
         return $this->hasMany(Customer::class,'sales_id');
     }
